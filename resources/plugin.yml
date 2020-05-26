@@ -1,0 +1,20 @@
+name: LoginTools
+version: 1.0
+main: fr.entasia.logintools.Main
+api-version: 1.13
+depend: [Libraries]
+commands:
+  loginpl:
+    aliases: [logintools]
+
+  spawn:
+    aliases: [spa]
+
+  hub:
+    aliases: [lobby, hub, lob]
+
+  login:
+    aliases: [log, lo, l]
+
+  register:
+    aliases: [reg]
