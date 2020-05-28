@@ -6,16 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6187d991-e13c-4e07-a14e-1d32d08407a5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/logintools/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/logintools/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/logintools/commands/LoginCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/logintools/commands/LoginCmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/logintools/commands/RegisterCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/logintools/commands/RegisterCmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/logintools/listeners/BaseListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/logintools/listeners/BaseListeners.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/logintools/listeners/ProtectionListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/logintools/listeners/ProtectionListeners.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/logintools/utils/LoginData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/entasia/logintools/utils/LoginData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/entasia/logintools/utils/SQLConnection.java" beforeDir="false" />
-    </list>
+    <list default="true" id="6187d991-e13c-4e07-a14e-1d32d08407a5" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +33,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -58,7 +48,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1573067860599" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../CoreBungee" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15527344" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -140,18 +130,6 @@
         <item itemvalue="Application.BaseListeners" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -483,13 +461,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
