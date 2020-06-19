@@ -19,7 +19,6 @@ public class Crypto {
 	protected final static ArgonInt FINAL_LEN = ArgonLib.inst.argon2_encodedlen(ITERATION, MEMORY, PARALLELISM,
 			SAlT_LEN, HASH_LEN, new NativeLong(2));
 
-
 	public static byte[] genSalt() {
 		byte[] b = new byte[SAlT_LEN.intValue()];
 		rd.nextBytes(b);

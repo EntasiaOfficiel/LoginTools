@@ -22,9 +22,6 @@ import static fr.entasia.logintools.Main.main;
 
 public class LoginCmd implements CommandExecutor {
 
-	public static MessageDigest SHA;
-
-
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!(sender instanceof Player)) return false;

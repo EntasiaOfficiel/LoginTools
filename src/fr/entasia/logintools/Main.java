@@ -5,6 +5,8 @@ import fr.entasia.logintools.commands.*;
 import fr.entasia.logintools.listeners.BaseListeners;
 import fr.entasia.logintools.listeners.ProtectionListeners;
 import fr.entasia.logintools.utils.ConsoleFilter;
+import fr.entasia.logintools.utils.Crypto;
+import org.apache.commons.codec.digest.Crypt;
 import org.apache.logging.log4j.LogManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -25,6 +27,8 @@ public class Main extends JavaPlugin {
 			saveDefaultConfig();
 			loadConfig();
 
+			Crypto.genSalt();
+
 			getCommand("loginpl").setExecutor(new LoginPlCmd());
 			getCommand("login").setExecutor(new LoginCmd());
 			getCommand("register").setExecutor(new RegisterCmd());
@@ -38,10 +42,8 @@ public class Main extends JavaPlugin {
 
 			new TaskMsg().runTaskTimer(this, 0, 140); // 7 * 20 = 140
 
-
-			LoginCmd.SHA = MessageDigest.getInstance("SHA-256");
 			getLogger().info("Plugin chargé avec succès !");
-		}catch(Exception e){
+		}catch(Throwable e){
 			e.printStackTrace();
 			getLogger().info("LE SERVEUR VA S'ARRETER");
 			Bukkit.getServer().shutdown();
