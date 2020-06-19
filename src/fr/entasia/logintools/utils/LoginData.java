@@ -2,9 +2,8 @@ package fr.entasia.logintools.utils;
 
 public class LoginData {
 
-	public boolean ex,auth;
+	public boolean auth;
 	public String password;
 	public long itemcd;
-	public String puuid;
 
 }

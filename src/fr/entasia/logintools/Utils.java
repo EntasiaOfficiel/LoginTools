@@ -16,7 +16,7 @@ import static fr.entasia.logintools.Main.main;
 
 public class Utils {
 
-	public static HashMap<UUID, LoginData> LoginDater = new HashMap<>();
+	public static HashMap<String, LoginData> LoginDater = new HashMap<>();
 	public static HashMap<String, byte[]> ATF = new HashMap<>();
 
 	public static Location spawn;

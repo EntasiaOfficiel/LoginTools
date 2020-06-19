@@ -29,7 +29,7 @@ public class LoginCmd implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!(sender instanceof Player)) return false;
 		Player p = (Player) sender;
-		LoginData ld = Utils.LoginDater.get(p.getUniqueId());
+		LoginData ld = Utils.LoginDater.get(p.getName());
 		if (ld == null) p.sendMessage("§cTes données d'authentifications sont en cours de chargement !");
 		else if (ld.password == null)
 			p.sendMessage("§cTu n'es pas inscrit sur §bEnta§7sia §c ! Utilise /register <mot de passe> <mot de passe>");
@@ -46,41 +46,9 @@ public class LoginCmd implements CommandExecutor {
 				new BukkitRunnable() {
 					@Override
 					public void run() {
-						boolean okay;
-						if (ld.ex) {
-							String salt = ld.password.split("\\$")[2];
-							byte[] passhash = SHA.digest(args[0].getBytes());
-							String password =  String.format("%0" + (passhash.length << 1) + "x", new BigInteger(1, passhash));
-							passhash = SHA.digest((password+salt).getBytes());
-							password =  String.format("%0" + (passhash.length << 1) + "x", new BigInteger(1, passhash));
-							okay = ld.password.equals("$SHA$"+salt+"$"+password);
-//							for(byte b : passhash){
-//								a = Integer.toHexString(0xff & b);
-//								if(a.length() == 1) sb.append(0);
-//								sb.append(a);
-//
-//							}
-//							StringBuilder sb = new StringBuilder("$SHA$"+a+"$");
-//							System.out.println(sb.toString());
-//							System.out.println(ld.password);
-//							okay = sb.toString().equals(ld.password);
-						}else okay = Crypto.comparePassword(ld.password, args[0]);
-						if(okay){
+						if(Crypto.comparePassword(ld.password, args[0])){
 							ld.auth = true;
-							p.sendMessage("§aMot de passe correct ! §6Téléportation au lobby..");
-							if(ld.ex) {
-								p.sendMessage("§6Nous avons remarqué que ton mot de passe est stocké dans notre base de données dans un ancien format. Nous allons le déplacer dans un nouveau format plus sécurisé !");
-
-								ld.password = Crypto.hashPassword(args[0]);
-								ld.ex = false;
-								try{
-									Main.sqlConnection.fastUpdateUnsafe("UPDATE global set expasswd=null, passwd=? WHERE uuid=?", Crypto.genBDD(ld.password), p.getUniqueId());
-								}catch(SQLException e){
-									e.printStackTrace();
-									p.sendMessage("§cErreur lors du déplacement de ton mot de passe ! Ton mot de passe à été gardé dans l'ancien format. Contacte un membre du staff");
-								}
-							}
-							Utils.tpLobby(p);
+							p.sendMessage("§aMot de passe correct ! §6Téléportation au lobby..");Utils.tpLobby(p);
 						}else p.sendMessage("§cLe mot de passe est incorrect !");
 					}
 				}.runTaskAsynchronously(main);

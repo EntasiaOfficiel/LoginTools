@@ -17,7 +17,7 @@ public class TaskMsg extends BukkitRunnable {
 	}
 
 	public static void sendMsg(Player p){
-		LoginData ld = Utils.LoginDater.get(p.getUniqueId());
+		LoginData ld = Utils.LoginDater.get(p.getName());
 		if(ld!=null&&!ld.auth) {
 			if (Utils.ATF.containsKey(p.getName().toLowerCase()) && !Arrays.equals(Utils.ATF.get(p.getName().toLowerCase()), p.getAddress().getAddress().getAddress())) {
 				p.sendMessage("§4§lCe compte est protégé.");

@@ -40,15 +40,12 @@ public class BaseListeners implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPreJoin(AsyncPlayerPreLoginEvent e) {
 		try{
-			ResultSet rs = Main.sqlConnection.fastSelectUnsafe("SELECT passwd, expasswd from global where uuid=?", e.getUniqueId());
+			ResultSet rs = Main.sqlConnection.fastSelectUnsafe("SELECT passwd from global where uuid=?", e.getUniqueId());
 			if(rs.next()){
 				LoginData ld = new LoginData();
 				ld.password = rs.getString("passwd");
-				if(ld.password==null){
-					ld.password = rs.getString("expasswd");
-					ld.ex = true;
-				}else ld.password = Crypto.getfromBDD(ld.password);
-				Utils.LoginDater.put(e.getUniqueId(), ld);
+				if(ld.password!=null)ld.password = Crypto.getfromBDD(ld.password);
+				Utils.LoginDater.put(e.getName(), ld);
 			}else{
 				e.setKickMessage("§cErreur lors de l'enregistrement/chargement de votre profil ! # 2");
 				e.setLoginResult(AsyncPlayerPreLoginEvent.Result.KICK_OTHER);
@@ -78,7 +75,7 @@ public class BaseListeners implements Listener {
 		p.setPlayerListName("§7"+p.getName());
 		p.getInventory().clear();
 		TaskMsg.sendMsg(p);
-		LoginData ld = Utils.LoginDater.get(p.getUniqueId());
+		LoginData ld = Utils.LoginDater.get(p.getName());
 
 		new BukkitRunnable() {
 			public void run() {
@@ -86,7 +83,7 @@ public class BaseListeners implements Listener {
 				cancel();
 				new BukkitRunnable() {
 					public void run() {
-						LoginData ldd = Utils.LoginDater.get(p.getUniqueId());
+						LoginData ldd = Utils.LoginDater.get(p.getName());
 						if(ldd!=null&&ld==ldd&&!ld.auth)
 							p.kickPlayer("§7Tu as mis trop longtemps à te login ! §cMot de passe oublié ? §7Passe sur Discord§b https://discord.gg/7U5E2yQ");
 					}
@@ -105,7 +102,7 @@ public class BaseListeners implements Listener {
 	@EventHandler
 	public void PlayerQuit(PlayerQuitEvent e) {
 		e.setQuitMessage("");
-		Utils.LoginDater.remove(e.getPlayer().getUniqueId());
+		Utils.LoginDater.remove(e.getPlayer().getName());
 	}
 
 
@@ -113,7 +110,7 @@ public class BaseListeners implements Listener {
 	public void onInteract(PlayerInteractEvent e) {
 		ItemStack it = e.getItem();
 		if (it != null && it.getType() == Material.NETHER_STAR && it.hasItemMeta() && it.getItemMeta().hasDisplayName() && it.getItemMeta().getDisplayName().equals("§eTéléportation au lobby")){
-			LoginData ld = Utils.LoginDater.get(e.getPlayer().getUniqueId());
+			LoginData ld = Utils.LoginDater.get(e.getPlayer().getName());
 			if(ld==null)return;
 			long b = (new Date().getTime()-ld.itemcd);
 			if (b < 6000) {

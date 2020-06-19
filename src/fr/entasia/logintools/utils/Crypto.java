@@ -65,50 +65,52 @@ public class Crypto {
 
 		String hashed = Crypto.hashPassword("bonjour");
 		System.out.println(hashed);
-		String[] parts = hashed.split("\\$");
-		System.out.println(parts.length);
-
-		byte[] pass = parts[5].getBytes();
-		byte[] salt = parts[4].getBytes();
-		byte version = Byte.parseByte(parts[2].substring(2));
-
-		byte[] fina = new byte[35+19+1];
-
-		int f = 0;
-		int t = 0;
-		for(int i=16;i<35;i++){ // fin du mdp
-			fina[f] = pass[i];
-			t++;
-			f++;
-		}
-
-
-		t = 0;
-		for(int i=0;i<4;i++){ // debut du salt
-			fina[f] = pass[i];
-			t++;
-			f++;
-		}
-
-
-		t = 0;
-		for(int i=4;i<19;i++){ // fin du salt
-			fina[f] = pass[i];
-			t++;
-			f++;
-		}
-
-		fina[f] = version;
-		f++;
-
-
-		t = 0;
-		for(int i=0;i<16;i++){ // début du mdp
-			fina[f] = pass[i];
-			t++;
-			f++;
-		}
-		String newhash = Base64.getEncoder().encodeToString(fina);
-		System.out.println(newhash);
+		String n = genBDD(hashed);
+		System.out.println(n);
+//		String[] parts = hashed.split("\\$");
+//		System.out.println(parts.length);
+//
+//		byte[] pass = parts[5].getBytes();
+//		byte[] salt = parts[4].getBytes();
+//		byte version = Byte.parseByte(parts[2].substring(2));
+//
+//		byte[] fina = new byte[35+19+1];
+//
+//		int f = 0;
+//		int t = 0;
+//		for(int i=16;i<35;i++){ // fin du mdp
+//			fina[f] = pass[i];
+//			t++;
+//			f++;
+//		}
+//
+//
+//		t = 0;
+//		for(int i=0;i<4;i++){ // debut du salt
+//			fina[f] = pass[i];
+//			t++;
+//			f++;
+//		}
+//
+//
+//		t = 0;
+//		for(int i=4;i<19;i++){ // fin du salt
+//			fina[f] = pass[i];
+//			t++;
+//			f++;
+//		}
+//
+//		fina[f] = version;
+//		f++;
+//
+//
+//		t = 0;
+//		for(int i=0;i<16;i++){ // début du mdp
+//			fina[f] = pass[i];
+//			t++;
+//			f++;
+//		}
+//		String newhash = Base64.getEncoder().encodeToString(fina);
+//		System.out.println(newhash);
 	}
 }
