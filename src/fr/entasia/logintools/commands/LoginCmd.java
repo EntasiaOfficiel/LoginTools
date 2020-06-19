@@ -45,7 +45,8 @@ public class LoginCmd implements CommandExecutor {
 					public void run() {
 						if(Crypto.comparePassword(ld.password, args[0])){
 							ld.auth = true;
-							p.sendMessage("§aMot de passe correct ! §6Téléportation au lobby..");Utils.tpLobby(p);
+							p.sendMessage("§aMot de passe correct ! §6Téléportation au lobby..");
+							Utils.tpLobby(p);
 						}else p.sendMessage("§cLe mot de passe est incorrect !");
 					}
 				}.runTaskAsynchronously(main);
