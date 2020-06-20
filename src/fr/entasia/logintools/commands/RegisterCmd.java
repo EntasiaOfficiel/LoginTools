@@ -20,7 +20,7 @@ public class RegisterCmd implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (!(sender instanceof Player)) return false;
 		Player p = (Player) sender;
-		LoginData ld = Utils.LoginDater.get(p.getUniqueId());
+		LoginData ld = Utils.LoginDater.get(p.getName());
 		if (ld == null)
 			p.sendMessage("§cTes données d'authentifications sont en cours de chargement !");
 		else if(ld.password == null){
