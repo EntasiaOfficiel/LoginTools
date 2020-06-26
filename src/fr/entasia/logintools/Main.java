@@ -12,6 +12,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.security.MessageDigest;
 
 public class Main extends JavaPlugin {
@@ -52,6 +53,12 @@ public class Main extends JavaPlugin {
 		org.apache.logging.log4j.core.Logger logger = (org.apache.logging.log4j.core.Logger) LogManager.getRootLogger();
 		logger.addFilter(new ConsoleFilter());
 
+		File[] files  = new File(Bukkit.getWorlds().get(0).getName()+"/playerdata").listFiles();
+		if(files!=null){
+			for(File lf : files){
+				lf.delete();
+			}
+		}
 	}
 
 	public static void loadConfig(){
