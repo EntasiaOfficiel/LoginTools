@@ -1,7 +1,6 @@
 name: LoginTools
-version: 1.0
+version: '1.0'
 main: fr.entasia.logintools.Main
-api-version: 1.13
 depend: [Libraries]
 commands:
   loginpl:

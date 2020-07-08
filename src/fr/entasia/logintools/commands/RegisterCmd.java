@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import static fr.entasia.logintools.Main.main;
 
@@ -26,9 +27,18 @@ public class RegisterCmd implements CommandExecutor {
 		else if(ld.password == null){
 			if(args.length==2) {
 				if(args[0].equals(args[1])) {
-					if (args[0].length() < 6)
-						p.sendMessage("§cTon mot de passe doit faire au minimum 7 caractères !");
-					else {
+					if (args[0].length() < 5) {
+						p.sendMessage("§cTon mot de passe doit faire au minimum 5 caractères !");
+					} else {
+						ArrayList<String> list = Main.easyPasses.get(args[0].charAt(0));
+						if(list!=null){
+							for(String pass : Main.easyPasses.get(args[0].charAt(0))){
+								if(pass.equals(args[0])){ //equalsIgnoreCase dans le futur ?
+									p.sendMessage("§cCe mot de passe est trop vulnérable, choisis-en un autre !");
+									return true;
+								}
+							}
+						}
 						new BukkitRunnable() {
 							@Override
 							public void run() {

@@ -34,7 +34,7 @@ public class ConsoleFilter extends AbstractFilter {
 		return validateMessage(msg.toString().toLowerCase());
 	}
 	public static Result validateMessage(Message msg) {
-		if (msg == null)return Result.NEUTRAL;
+		if (msg == null||msg.getFormattedMessage()==null)return Result.NEUTRAL;
 		return validateMessage(msg.getFormattedMessage().toLowerCase());
 	}
 

@@ -4,8 +4,3 @@ spawn:
   y: 65
   z: 0
   world: world
-sql:
-  host: localhost
-  port: 3306
-  user: root
-  password: azerty123

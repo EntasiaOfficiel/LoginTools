@@ -12,13 +12,19 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main extends JavaPlugin {
 
 	public static Main main;
 	public static SQLConnection sqlConnection;
+
+	public static HashMap<Character, ArrayList<String>> easyPasses = new HashMap<>();
 
 	@Override
 	public void onEnable() {
@@ -37,6 +43,20 @@ public class Main extends JavaPlugin {
 			getCommand("hub").setExecutor(new HubCmd());
 
 			sqlConnection = new SQLConnection("login", "playerdata");
+
+			File p = new File(getDataFolder(), "easyPasses.txt");
+			if(p.exists()){
+				BufferedReader reader = new BufferedReader(new FileReader(p));
+				String line;
+				ArrayList<String> list;
+				while((line = reader.readLine())!=null){
+					list = easyPasses.computeIfAbsent(line.charAt(0), k -> new ArrayList<>());
+					list.add(line);
+				}
+			}else{
+				getLogger().warning("Création du fichier easyPasses.txt");
+				p.createNewFile();
+			}
 
 			getServer().getPluginManager().registerEvents(new BaseListeners(), this);
 			getServer().getPluginManager().registerEvents(new ProtectionListeners(), this);
