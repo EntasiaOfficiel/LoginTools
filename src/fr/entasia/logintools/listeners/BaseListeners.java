@@ -61,15 +61,14 @@ public class BaseListeners implements Listener {
 	public void onJoin(PlayerJoinEvent e) {
 		e.setJoinMessage("");
 		Player p = e.getPlayer();
-		Location nsp = Utils.spawn.clone();
-		nsp.setX(nsp.getX()+random()-8);
-		nsp.setZ(nsp.getZ()+random()-8);
-		nsp.setY(nsp.getY()+1);
-		if(nsp.getBlock().getType()==Material.AIR){
-			nsp.setY(nsp.getY()-1);
-			p.teleport(nsp);
-		}
-		else p.teleport(Utils.spawn);
+		Location loc = Utils.spawn.clone();
+		loc.setX(loc.getX()+random()-8);
+		loc.setZ(loc.getZ()+random()-8);
+		loc.setY(loc.getY());
+		if(loc.getBlock().getType().isSolid()&&loc.add(0, 1, 0).getBlock().getType()==Material.AIR){
+			loc.setY(loc.getY()-1);
+			p.teleport(loc);
+		}else p.teleport(Utils.spawn);
 		p.setPlayerListHeaderFooter(ChatComponent.create("§3Bienvenue sur §bEnta§7sia!\n Ping : §b"+ PlayerUtils.getPing(p, false) +" \n §7§m-------------------§r"),
 				ChatComponent.create("§7§m-------------------§r\n §3Discord: §b/discord"));
 		p.setPlayerListName("§7"+p.getName());

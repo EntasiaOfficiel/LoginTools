@@ -109,7 +109,7 @@ public class ProtectionListeners implements Listener {
 
 	@EventHandler
 	public void anyMovement(PlayerMoveEvent e){
-		if(e.getTo().distance(Utils.spawn)>80){
+		if(e.getTo().distance(Utils.spawn)>50){
 			e.setCancelled(true);
 			Vector vec = new Vector(Utils.spawn.getX()-e.getTo().getX(), Utils.spawn.getY()-e.getTo().getY(), Utils.spawn.getZ()-e.getTo().getZ());
 			vec.multiply(0.06);
