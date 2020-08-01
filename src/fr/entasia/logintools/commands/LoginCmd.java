@@ -1,6 +1,5 @@
 package fr.entasia.logintools.commands;
 
-import fr.entasia.logintools.Main;
 import fr.entasia.logintools.Utils;
 import fr.entasia.logintools.utils.Crypto;
 import fr.entasia.logintools.utils.LoginData;
@@ -10,9 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;

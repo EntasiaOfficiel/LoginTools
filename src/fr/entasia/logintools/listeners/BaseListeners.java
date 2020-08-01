@@ -1,8 +1,8 @@
 package fr.entasia.logintools.listeners;
 
 import fr.entasia.apis.other.ChatComponent;
-import fr.entasia.apis.utils.PlayerUtils;
 import fr.entasia.apis.socket.SocketClient;
+import fr.entasia.apis.utils.PlayerUtils;
 import fr.entasia.logintools.Main;
 import fr.entasia.logintools.TaskMsg;
 import fr.entasia.logintools.Utils;

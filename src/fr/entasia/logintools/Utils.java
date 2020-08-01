@@ -10,7 +10,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
-import java.util.UUID;
 
 import static fr.entasia.logintools.Main.main;
 

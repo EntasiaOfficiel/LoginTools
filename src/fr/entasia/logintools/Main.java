@@ -6,7 +6,6 @@ import fr.entasia.logintools.listeners.BaseListeners;
 import fr.entasia.logintools.listeners.ProtectionListeners;
 import fr.entasia.logintools.utils.ConsoleFilter;
 import fr.entasia.logintools.utils.Crypto;
-import org.apache.commons.codec.digest.Crypt;
 import org.apache.logging.log4j.LogManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -15,7 +14,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.HashMap;
 
