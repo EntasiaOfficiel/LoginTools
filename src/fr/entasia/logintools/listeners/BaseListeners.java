@@ -66,7 +66,6 @@ public class BaseListeners implements Listener {
 		loc.setZ(loc.getZ()+random()-8);
 		loc.setY(loc.getY());
 		if(loc.getBlock().getType().isSolid()&&loc.add(0, 1, 0).getBlock().getType()==Material.AIR){
-			loc.setY(loc.getY()-1);
 			p.teleport(loc);
 		}else p.teleport(Utils.spawn);
 		p.setPlayerListHeaderFooter(ChatComponent.create("§3Bienvenue sur §bEnta§7sia!\n Ping : §b"+ PlayerUtils.getPing(p, false) +" \n §7§m-------------------§r"),
