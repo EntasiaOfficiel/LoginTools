@@ -71,7 +71,13 @@ public class Main extends JavaPlugin {
 		org.apache.logging.log4j.core.Logger logger = (org.apache.logging.log4j.core.Logger) LogManager.getRootLogger();
 		logger.addFilter(new ConsoleFilter());
 
-		File[] files  = new File(Bukkit.getWorlds().get(0).getName()+"/playerdata").listFiles();
+		delFiles("playerdata");
+		delFiles("stats");
+		delFiles("advancements");
+	}
+
+	public static void delFiles(String dir){
+		File[] files  = new File(Bukkit.getWorlds().get(0).getName()+"/"+dir).listFiles();
 		if(files!=null){
 			for(File lf : files){
 				lf.delete();
