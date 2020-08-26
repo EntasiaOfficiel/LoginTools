@@ -14,6 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -61,26 +62,26 @@ public class Main extends JavaPlugin {
 
 			new TaskMsg().runTaskTimer(this, 0, 140); // 7 * 20 = 140
 
+			org.apache.logging.log4j.core.Logger logger = (org.apache.logging.log4j.core.Logger) LogManager.getRootLogger();
+			logger.addFilter(new ConsoleFilter());
+
+			delFiles("playerdata");
+			delFiles("stats");
+			delFiles("advancements");
+
 			getLogger().info("Plugin chargé avec succès !");
 		}catch(Throwable e){
 			e.printStackTrace();
 			getLogger().info("LE SERVEUR VA S'ARRETER");
 			Bukkit.getServer().shutdown();
 		}
-
-		org.apache.logging.log4j.core.Logger logger = (org.apache.logging.log4j.core.Logger) LogManager.getRootLogger();
-		logger.addFilter(new ConsoleFilter());
-
-		delFiles("playerdata");
-		delFiles("stats");
-		delFiles("advancements");
 	}
 
-	public static void delFiles(String dir){
+	public static void delFiles(String dir) throws IOException {
 		File[] files  = new File(Bukkit.getWorlds().get(0).getName()+"/"+dir).listFiles();
 		if(files!=null){
 			for(File lf : files){
-				lf.delete();
+				if(!lf.delete())throw new IOException("File not deleted");
 			}
 		}
 	}
