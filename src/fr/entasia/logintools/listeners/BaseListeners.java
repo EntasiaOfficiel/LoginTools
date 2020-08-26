@@ -59,19 +59,21 @@ public class BaseListeners implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onJoin(PlayerJoinEvent e) {
-		e.setJoinMessage("");
 		Player p = e.getPlayer();
+		e.setJoinMessage("");
+		p.setPlayerListHeaderFooter(ChatComponent.create("§3Bienvenue sur §bEnta§7sia!\n Ping : §b"+ PlayerUtils.getPing(p) +" \n §7§m-------------------§r"),
+				ChatComponent.create("§7§m-------------------§r\n §3Discord: §b/discord"));
+		p.setPlayerListName("§7"+p.getName());
+		p.getInventory().clear();
+
 		Location loc = Utils.spawn.clone();
-		loc.setX(loc.getX()+random()-8);
-		loc.setZ(loc.getZ()+random()-8);
+		loc.setX(loc.getX()+random()-5);
+		loc.setZ(loc.getZ()+random()-5);
 		loc.setY(loc.getY());
 		if(loc.getBlock().getType().isSolid()&&loc.add(0, 1, 0).getBlock().getType()==Material.AIR){
 			p.teleport(loc);
 		}else p.teleport(Utils.spawn);
-		p.setPlayerListHeaderFooter(ChatComponent.create("§3Bienvenue sur §bEnta§7sia!\n Ping : §b"+ PlayerUtils.getPing(p, false) +" \n §7§m-------------------§r"),
-				ChatComponent.create("§7§m-------------------§r\n §3Discord: §b/discord"));
-		p.setPlayerListName("§7"+p.getName());
-		p.getInventory().clear();
+
 		TaskMsg.sendMsg(p);
 		LoginData ld = Utils.LoginDater.get(p.getName());
 
