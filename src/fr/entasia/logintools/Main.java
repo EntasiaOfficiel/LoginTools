@@ -9,6 +9,7 @@ import fr.entasia.logintools.utils.Crypto;
 import org.apache.logging.log4j.LogManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.BufferedReader;
@@ -88,8 +89,13 @@ public class Main extends JavaPlugin {
 
 	public static void loadConfig(){
 		main.reloadConfig();
-		Utils.spawn = new Location(Bukkit.getWorld(Main.main.getConfig().getString("spawn.world")), Main.main.getConfig().getInt("spawn.x")+0.5,
-						Main.main.getConfig().getInt("spawn.y")+0.2, Main.main.getConfig().getInt("spawn.z")+0.5);
+		ConfigurationSection cs = Main.main.getConfig().getConfigurationSection("spawn");
+		Utils.spawn = new Location(Bukkit.getWorlds().get(0),
+				cs.getInt("x")+0.5,
+				cs.getInt("y")+0.2,
+				cs.getInt("z")+0.5);
+		Utils.spawn.setPitch(cs.getInt("pitch"));
+		Utils.spawn.setYaw(cs.getInt("yaw"));
 
 		Utils.ATF.clear();
 		for(String i : Main.main.getConfig().getStringList("staffs")){
