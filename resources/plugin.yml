@@ -1,5 +1,6 @@
 name: LoginTools
 version: '1.0'
+api-version: '1.15'
 main: fr.entasia.logintools.Main
 depend: [Libraries]
 commands:
