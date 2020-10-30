@@ -45,7 +45,7 @@ public class BaseListeners implements Listener {
 				LoginData ld = new LoginData();
 				ld.password = rs.getString("passwd");
 				if(ld.password!=null)ld.password = Crypto.getfromBDD(ld.password);
-				Utils.LoginDater.put(e.getName(), ld);
+				Utils.loginDatas.put(e.getName(), ld);
 			}else{
 				e.setKickMessage("§cErreur lors de l'enregistrement/chargement de votre profil ! # 2");
 				e.setLoginResult(AsyncPlayerPreLoginEvent.Result.KICK_OTHER);
@@ -75,7 +75,7 @@ public class BaseListeners implements Listener {
 		}else p.teleport(Utils.spawn);
 
 		TaskMsg.sendMsg(p);
-		LoginData ld = Utils.LoginDater.get(p.getName());
+		LoginData ld = Utils.loginDatas.get(p.getName());
 
 		new BukkitRunnable() {
 			public void run() {
@@ -83,7 +83,7 @@ public class BaseListeners implements Listener {
 				cancel();
 				new BukkitRunnable() {
 					public void run() {
-						LoginData ldd = Utils.LoginDater.get(p.getName());
+						LoginData ldd = Utils.loginDatas.get(p.getName());
 						if(ldd!=null&&ld==ldd&&!ld.auth)
 							p.kickPlayer("§7Tu as mis trop longtemps à te login ! §cMot de passe oublié ? §7Passe sur Discord§b https://discord.gg/7U5E2yQ");
 					}
@@ -102,7 +102,7 @@ public class BaseListeners implements Listener {
 	@EventHandler
 	public void PlayerQuit(PlayerQuitEvent e) {
 		e.setQuitMessage("");
-		Utils.LoginDater.remove(e.getPlayer().getName());
+		Utils.loginDatas.remove(e.getPlayer().getName());
 	}
 
 
@@ -110,7 +110,7 @@ public class BaseListeners implements Listener {
 	public void onInteract(PlayerInteractEvent e) {
 		ItemStack it = e.getItem();
 		if (it != null && it.getType() == Material.NETHER_STAR && it.hasItemMeta() && it.getItemMeta().hasDisplayName() && it.getItemMeta().getDisplayName().equals("§eTéléportation au lobby")){
-			LoginData ld = Utils.LoginDater.get(e.getPlayer().getName());
+			LoginData ld = Utils.loginDatas.get(e.getPlayer().getName());
 			if(ld==null)return;
 			long b = (new Date().getTime()-ld.itemcd);
 			if (b < 6000) {

@@ -31,7 +31,7 @@ public class ProtectionListeners implements Listener {
 	@EventHandler
 	public void onBreak(BlockBreakEvent e) {
 		if(e.getPlayer().getGameMode()== GameMode.CREATIVE&&e.getPlayer().isOp()){
-			LoginData ld = Utils.LoginDater.get(e.getPlayer().getName());
+			LoginData ld = Utils.loginDatas.get(e.getPlayer().getName());
 			e.setCancelled(ld==null||!ld.auth);
 		}else e.setCancelled(true);
 	}
@@ -39,7 +39,7 @@ public class ProtectionListeners implements Listener {
 	@EventHandler
 	public void onPlace(BlockPlaceEvent e) {
 		if(e.getPlayer().getGameMode()== GameMode.CREATIVE&&e.getPlayer().isOp()){
-			LoginData ld = Utils.LoginDater.get(e.getPlayer().getName());
+			LoginData ld = Utils.loginDatas.get(e.getPlayer().getName());
 			e.setCancelled(ld==null||!ld.auth);
 		}else e.setCancelled(true);
 	}
@@ -54,7 +54,7 @@ public class ProtectionListeners implements Listener {
 
 	@EventHandler
 	public void onCommand(PlayerCommandPreprocessEvent e) {
-		LoginData ld = Utils.LoginDater.get(e.getPlayer().getName());
+		LoginData ld = Utils.loginDatas.get(e.getPlayer().getName());
 		if(ld==null||!ld.auth){
 			String cmd = e.getMessage().split(" ")[0].substring(1).toLowerCase();
 			for(String i : commands){
